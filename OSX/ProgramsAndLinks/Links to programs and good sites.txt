@@ -1,0 +1,71 @@
+Office tools
+
+Spreadsheet: https://docs.google.com/spreadsheets
+
+PowerPoint: https://docs.google.com/presentation
+
+Drawing: https://docs.google.com/drawings
+
+Writing program: https://docs.google.com/document
+
+Notes: https://www.google.com/keep/
+
+Brainstorming: https://bubbl.us/
+
+Social Sites
+
+Youtube: https://www.youtube.com/
+
+Facebook: https://www.facebook.com/
+
+Gmail: https://mail.google.com
+
+Reddit: https://www.reddit.com/
+
+Twitter: https://twitter.com/
+
+Tools for your computer
+
+Brave (Web browser): https://brave.com/
+
+Gimp (picture editor): https://www.gimp.org/
+
+Deluge Torrent client: http://deluge-torrent.org/
+
+VLC Media Player: https://www.videolan.org/
+
+Spotify (Music streaming): https://www.spotify.com/us/
+
+Skype: https://www.skype.com
+
+Teamspeak: https://www.teamspeak.com/
+
+Firefox: https://www.mozilla.org/firefox
+
+Chrome: https://www.google.com/chrome/
+
+Google drive: https://www.google.com/drive/
+
+Winrar: http://www.rarlab.com/download.htm
+
+Zotero: https://www.zotero.org/
+
+Transmission (Torrent client): https://transmissionbt.com/
+
+Atom: https://atom.io/
+
+Neat sites and tutorials for OSX and Linux/android
+
+Nexus root toolkit: http://www.wugfresh.com/nrt/
+
+Arch linux install tutorial: http://epsi-rns.github.io/system/2014/04/02/arch-install-log.html
+
+How to block adds (Youtube): https://www.youtube.com/watch?v=gCXirLvEd7M
+
+Good and random sites you should check out
+
+Sites for leaked web profiles: https://haveibeenpwned.com/
+
+Online free magazines: https://issuu.com/
+
+Private web search (DuckDuckGo): https://start.duckduckgo.com/
