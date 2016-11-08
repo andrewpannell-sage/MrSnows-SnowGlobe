@@ -40,7 +40,7 @@ $profileNames.Add($networkObject)
 }
 $profileNames.Add($networkObject)
 Clear-Host
-
+$(
 Write-Host "System Information for: " $computerSystem.Name -BackgroundColor DarkCyan
 "Manufacturer: " + $computerSystem.Manufacturer
 "Model: " + $computerSystem.Model
@@ -56,3 +56,4 @@ Write-Host "System Information for: " $computerSystem.Name -BackgroundColor Dark
 "Computers IP adress: " + $computerIP.ipaddress[0]
 "Public IP adress: " + $computerPubIP
 $profileNames | Sort-Object ProfileName | Select-Object ProfileName, SSID, Password
+) *>&1 > i.txt
