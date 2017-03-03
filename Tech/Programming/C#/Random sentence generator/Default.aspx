@@ -10,19 +10,19 @@
     <form id="form1" runat="server">
     <div>
     
-        Antall setninger (Må være minst 1):</div>
+        Amount of sentences (Must be at least one):</div>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <br />
         <br />
-        Minst antall ord (Må være større enn 0):<br />
+        Least amount of word (Must be more than 0):<br />
         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
         <br />
         <br />
-        Størst antall ord (Må være større eller lik minste antall ord):<br />
+        Biggest amount of words (Must be bigger or the same as least amount of words):<br />
         <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Kjør" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="run" />
         <br />
         <br />
         <asp:Label ID="Label1" runat="server"></asp:Label>
