@@ -1,6 +1,9 @@
 # Shows details of currently running PC
-# Simen Kjeserud 03/10/2016
+# Simen Kjeserud
 
+
+
+#Get info about pc
 $computerSystem = Get-CimInstance CIM_ComputerSystem
 $computerBIOS = Get-CimInstance CIM_BIOSElement
 $computerOS = Get-CimInstance CIM_OperatingSystem
@@ -8,6 +11,12 @@ $computerCPU = Get-CimInstance CIM_Processor
 $computerHDD = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID = 'C:'"
 $computerPubIP = irm ipinfo.io/ip
 $computerIP = get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -gt 1}
+
+#Check RDP
+$RDP
+if ((Get-ItemProperty "hklm:\System\CurrentControlSet\Control\Terminal Server").fDenyTSConnections -eq 0) { $RDP = "RDP is Enabled" } else { $RDP = "RDP is NOT enabled" }
+
+#Get wifi SSID and password
 $Networks =  Get-WmiObject Win32_NetworkAdapterConfiguration -Filter "DHCPEnabled=$True" | ? {$_.IPEnabled}
 foreach ($Network in $Networks) {
 
@@ -39,8 +48,14 @@ Password = $profilePw
 $profileNames.Add($networkObject)
 }
 $profileNames.Add($networkObject)
-Clear-Host
 
+[void][Windows.Security.Credentials.PasswordVault,Windows.Security.Credentials,ContentType=WindowsRuntime]
+$vault = New-Object Windows.Security.Credentials.PasswordVault 
+$vault = $vault.RetrieveAll() | % { $_.RetrievePassword();$_ }
+
+
+#The output
+Clear-Host
 Write-Host "System Information for: " $computerSystem.Name -BackgroundColor DarkCyan
 "Manufacturer: " + $computerSystem.Manufacturer
 "Model: " + $computerSystem.Model
@@ -55,4 +70,8 @@ Write-Host "System Information for: " $computerSystem.Name -BackgroundColor Dark
 "Computers MAC adress: " + $computerMAC
 "Computers IP adress: " + $computerIP.ipaddress[0]
 "Public IP adress: " + $computerPubIP
-$profileNames | Sort-Object ProfileName | Select-Object ProfileName, SSID, Password
+"RDP: " + $RDP
+Get-WmiObject win32_bios
+
+$vault | select Resource, UserName, Password | Sort-Object Resource | ft -AutoSize 
+$profileNames 
